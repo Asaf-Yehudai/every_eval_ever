@@ -159,6 +159,7 @@ def convert_to_evalhub_format(input_data: Dict[str, Any]) -> Dict[str, Any]:
             "name": model_name,
             "developer": developer,
             "inference_platform": "unknown",
+            "id": f"{developer}/{model_name}" if "/" not in model_name else model_name,
         },
         "evaluation_results": evaluation_results,
     }
