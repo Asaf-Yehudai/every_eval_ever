@@ -144,7 +144,7 @@ def convert_to_evalhub_format(input_data: Dict[str, Any]) -> Dict[str, Any]:
         "schema_version": "0.0.1",
         "evaluation_id": f"hfopenllm_v2/{model_name.replace('/', '_')}/{time.time()}",
         "retrieved_timestamp": time.time(),
-        "source_data_urls": [
+        "source_data": [
             "https://open-llm-leaderboard-open-llm-leaderboard.hf.space/api/leaderboard/formatted"
         ],
         "evaluation_source": {
