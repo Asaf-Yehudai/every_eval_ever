@@ -22,7 +22,7 @@ To run the pre-commit specific files:
 uv run pre-commit run --files /path/to/data/a.json /path/to/data/b.json
 ```
 
-To optionally install the pre-commit so that it will run when before `git commit` (optional):
+To install the pre-commit so that it will run when before `git commit` (optional):
 
 ```sh
 uv run pre-commit install
