@@ -45,7 +45,9 @@ Note: Each file can contain multiple individual results related to one model. Se
 - `inference_platform`: Use this field when the evaluation was run through a remote API (e.g., `openai`, `huggingface`, `openrouter`, `anthropic`, `xai`).
 - `inference_engine`: Use this field when the evaluation was run through a local inference engine (e.g. `vLLM`, `Ollama`).
 
-4. Additional details can be provided in several places in the schema. They are not required, but can be useful for detailed analysis.
+4. The schema is designed to accomodate both numeric and level-based (e.g. Low, Medium, High) metrics. For level-based metrics, the actual 'value' should be converted to an integer (e.g. Low = 1, Medium = 2, High = 3), and the 'level_names' propert should be used to specify the mapping of levels to integers.
+
+5. Additional details can be provided in several places in the schema. They are not required, but can be useful for detailed analysis.
 - `model_info.additional_details`: Use this field to provide any additional information about the model itself (e.g. number of parameters)
 - `evaluation_results.generation_config.generation_args`: Specify additional arguments used to generate outputs from the model
 - `evaluation_results.generation_config.additional_details`: Use this field to provide any additional information about the evaluation process that is not captured elsewhere
@@ -138,10 +140,27 @@ Each evaluation (e.g., `livecodebenchpro`, `hfopenllm_v2`) has its own directory
         "max_score": 1
       },
       "score_details": {
-        "score": "0.4003466358151926" # Score should be stored as a string since some evals used categories not numbers (e.g. `High`)
+        "score": 0.4003466358151926
       }
     }
 ...
   ]
 }
+```
+
+**Level-based metrics example**
+
+```
+    {
+      "evaluation_name": "Data Transparency Rating",
+      "metric_config": {
+        "evaluation_description": "Evaluation of data documentation transparency",
+        "lower_is_better": false,
+        "score_type": "level",
+        "level_names": ["Low", "Medium", "High"]
+      },
+      "score_details": {
+        "score": 1
+      }
+    }
 ```
