@@ -145,7 +145,7 @@ def convert(leaderboard_name, leaderboard_data, evaluation_source, source_data):
                     evaluation_description=header.get('description') or None,
                     lower_is_better=header.get('lower_is_better') or False,
                     min_score=0 if mins[col_id] >= 0 else math.floor(mins[col_id]),
-                    max_score=1 if maxs[col_id] <= 1 else None,
+                    max_score=1 if maxs[col_id] <= 1 else math.ceil(maxs[col_id]),
                     score_type=ScoreType.continuous
                 )
 
