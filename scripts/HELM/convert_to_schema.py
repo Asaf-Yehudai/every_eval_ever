@@ -1,8 +1,8 @@
-import json
+import math
+import os
+import requests
 import time
 import uuid
-import requests
-import os
 
 from argparse import ArgumentParser
 from collections import defaultdict
@@ -102,7 +102,7 @@ def extract_model_info(row: List, model_name: str) -> ModelInfo:
     )
 
 
-def check_if_values_are_in_range(tab_rows, min_value_in_range=0, max_value_in_range=1):
+def check_min_and_max_values_in_columns(tab_rows):
     ''''
     Check if we can assign range [0, 1] for metric score.
     '''
@@ -117,11 +117,7 @@ def check_if_values_are_in_range(tab_rows, min_value_in_range=0, max_value_in_ra
             mins[col_id - 1] = min(mins[col_id - 1], el.get('value', 0))
             maxs[col_id - 1] = max(maxs[col_id - 1], el.get('value', 0))
 
-    return [
-        min_value >= min_value_in_range and max_value <= max_value_in_range
-        for min_value, max_value in zip(mins, maxs)
-    ]
-
+    return mins, maxs
 
 def convert(leaderboard_name, leaderboard_data, evaluation_source, source_data):
     '''
@@ -136,7 +132,7 @@ def convert(leaderboard_name, leaderboard_data, evaluation_source, source_data):
 
     for idx, (headers, tab_rows) in enumerate(zip(tabs_headers, tabs_rows)):
         tab_name = leaderboard_data[idx].get('title')
-        is_metric_in_range = check_if_values_are_in_range(tab_rows)
+        mins, maxs = check_min_and_max_values_in_columns(tab_rows)
 
         for rows in tab_rows:
             model_name = rows[0].get('value')
@@ -148,8 +144,8 @@ def convert(leaderboard_name, leaderboard_data, evaluation_source, source_data):
                 metric_config = MetricConfig(
                     evaluation_description=header.get('description') or None,
                     lower_is_better=header.get('lower_is_better') or False,
-                    min_score=0 if is_metric_in_range[col_id] else None,
-                    max_score=1 if is_metric_in_range[col_id] else None,
+                    min_score=0 if mins[col_id] >= 0 else math.floor(mins[col_id]),
+                    max_score=1 if maxs[col_id] <= 1 else None,
                     score_type=ScoreType.continuous
                 )
 
