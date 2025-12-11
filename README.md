@@ -7,7 +7,7 @@
 The EvalEval Coalition focuses on conducting rigorous research on AI evaluation methods, building practical infrastructure for evaluation work, and organizing collaborative efforts across their researcher community. This repository, **every_eval_ever**, provides a standarized metadata format for storing evaluation results from various leaderboards, research, and local evaluations.
 
 ## Contributor Guide
-Leaderboard/evaluation data is split-up into files by individual model, and data for each model is stored using [this JSON Schema](https://github.com/evaleval/evalHub/blob/main/schema/eval.schema.json). The repository is structured into folders as `{leaderboard_name}/{developer_name}/{model_name}/`.
+Leaderboard/evaluation data is split-up into files by individual model, and data for each model is stored using [this JSON Schema](https://github.com/evaleval/every_eval_ever/blob/main/eval.schema.json). The repository is structured into folders as `{leaderboard_name}/{developer_name}/{model_name}/`.
 
 ### UUID Naming Convention
 
