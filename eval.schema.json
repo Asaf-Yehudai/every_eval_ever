@@ -6,7 +6,6 @@
     "required": [
         "schema_version",
         "evaluation_id",
-        "evaluation_source",
         "retrieved_timestamp",
         "source_data",
         "source_metadata",

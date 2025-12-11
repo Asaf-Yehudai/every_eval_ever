@@ -45,7 +45,7 @@ Note: Each file can contain multiple individual results related to one model. Se
 - `inference_platform`: Use this field when the evaluation was run through a remote API (e.g., `openai`, `huggingface`, `openrouter`, `anthropic`, `xai`).
 - `inference_engine`: Use this field when the evaluation was run through a local inference engine (e.g. `vLLM`, `Ollama`).
 
-4. The `source_type` has two options: `documentation` and `evaluation_platform`. Use `documentation` when the evaluation results are extracted from a documentation source (e.g., a leaderboard website or API). Use `evaluation_platform` when the evaluation was run through a dedicated evaluation platform (e.g., EvalEval, LeaderboardHub).
+4. The `source_type` has two options: `documentation` and `evaluation_platform`. Use `documentation` when the evaluation results are extracted from a documentation source (e.g., a leaderboard website or API). Use `evaluation_platform` when the evaluation was run locally or through an evaluation platform.
 
 5. The schema is designed to accomodate both numeric and level-based (e.g. Low, Medium, High) metrics. For level-based metrics, the actual 'value' should be converted to an integer (e.g. Low = 1, Medium = 2, High = 3), and the 'level_names' propert should be used to specify the mapping of levels to integers.
 
