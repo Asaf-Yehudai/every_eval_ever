@@ -23,12 +23,12 @@ Each JSON file is named with a **UUID (Universally Unique Identifier)** in the f
 
 Note: Each file can contain multiple individual results related to one model. See [examples in /data](data/).
 
-### How to add a new leaderboard:
+### How to add new eval:
 
-1. Add a new folder under `/data` with a codename for your leaderboard.
+1. Add a new folder under `/data` with a codename for your eval.
 2. For each model, use the HuggingFace (`developer_name/model_name`) naming convention to create a 2-tier folder structure.
 3. Add a JSON file with results for each model and name it `{uuid}.json`.
-4. [Optional] Include a `scripts` folder in your leaderboard folder with any scripts used to generate the data.
+4. [Optional] Include a `scripts` folder in your eval name folder with any scripts used to generate the data.
 5. [Validate] Validation Script: Adds workflow (`workflows/validate-data.yml`) that runs validation script (`scripts/validate_data.py`) to check JSON files against schema and report errors before merging.
 
 ### Schema Instructions
