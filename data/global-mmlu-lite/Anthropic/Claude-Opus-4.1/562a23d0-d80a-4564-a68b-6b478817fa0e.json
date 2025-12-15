@@ -1,10 +1,6 @@
 {
-  "schema_version": "0.0.1",
-  "evaluation_id": "anthropic/global-mmlu-lite/2025-11-28T00:41:43.991577Z",
-  "evaluation_source": {
-    "evaluation_source_name": "Kaggle Global MMLU Lite Leaderboard",
-    "evaluation_source_type": "leaderboard"
-  },
+  "schema_version": "0.1.0",
+  "evaluation_id": "global-mmlu-lite/anthropic/claude-opus-41/2025-11-28T00:41:43.991577Z",
   "retrieved_timestamp": "2025-11-28T00:41:43.991577Z",
   "source_data": [
     "https://www.kaggle.com/benchmarks/cohere-labs/global-mmlu-lite"
@@ -12,7 +8,9 @@
   "source_metadata": {
     "source_organization_name": "Cohere Labs",
     "source_organization_url": "https://www.kaggle.com/organizations/cohere-labs",
-    "evaluator_relationship": "third_party"
+    "evaluator_relationship": "third_party",
+    "source_type": "documentation",
+    "source_name": "Kaggle Global MMLU Lite Leaderboard"
   },
   "model_info": {
     "name": "Claude Opus 4.1",
