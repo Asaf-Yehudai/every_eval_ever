@@ -5,19 +5,22 @@
   "source_data": [
     "https://open-llm-leaderboard-open-llm-leaderboard.hf.space/api/leaderboard/formatted"
   ],
-  "evaluation_source": {
-    "evaluation_source_name": "HF Open LLM v2",
-    "evaluation_source_type": "leaderboard"
-  },
   "source_metadata": {
     "source_organization_name": "Hugging Face",
-    "evaluator_relationship": "third_party"
+    "evaluator_relationship": "third_party",
+    "source_name": "HF Open LLM v2",
+    "source_type": "documentation"
   },
   "model_info": {
     "name": "EpistemeAI2/Athene-codegemma-2-7b-it-alpaca-v1.2",
     "developer": "google",
     "inference_platform": "unknown",
-    "id": "EpistemeAI2/Athene-codegemma-2-7b-it-alpaca-v1.2"
+    "id": "EpistemeAI2/Athene-codegemma-2-7b-it-alpaca-v1.2",
+    "additional_details": {
+      "precision": "bfloat16",
+      "architecture": "GemmaForCausalLM",
+      "params_billions": 7.0
+    }
   },
   "evaluation_results": [
     {
@@ -98,10 +101,5 @@
         "score": 0.22972074468085107
       }
     }
-  ],
-  "additional_details": {
-    "precision": "bfloat16",
-    "architecture": "GemmaForCausalLM",
-    "params_billions": 7.0
-  }
+  ]
 }

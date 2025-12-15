@@ -5,19 +5,22 @@
   "source_data": [
     "https://open-llm-leaderboard-open-llm-leaderboard.hf.space/api/leaderboard/formatted"
   ],
-  "evaluation_source": {
-    "evaluation_source_name": "HF Open LLM v2",
-    "evaluation_source_type": "leaderboard"
-  },
   "source_metadata": {
     "source_organization_name": "Hugging Face",
-    "evaluator_relationship": "third_party"
+    "evaluator_relationship": "third_party",
+    "source_name": "HF Open LLM v2",
+    "source_type": "documentation"
   },
   "model_info": {
     "name": "allknowingroger/MixTAO-19B-pass",
     "developer": "allknowingroger",
     "inference_platform": "unknown",
-    "id": "allknowingroger/MixTAO-19B-pass"
+    "id": "allknowingroger/MixTAO-19B-pass",
+    "additional_details": {
+      "precision": "bfloat16",
+      "architecture": "MixtralForCausalLM",
+      "params_billions": 19.188
+    }
   },
   "evaluation_results": [
     {
@@ -98,10 +101,5 @@
         "score": 0.31050531914893614
       }
     }
-  ],
-  "additional_details": {
-    "precision": "bfloat16",
-    "architecture": "MixtralForCausalLM",
-    "params_billions": 19.188
-  }
+  ]
 }

@@ -5,19 +5,22 @@
   "source_data": [
     "https://open-llm-leaderboard-open-llm-leaderboard.hf.space/api/leaderboard/formatted"
   ],
-  "evaluation_source": {
-    "evaluation_source_name": "HF Open LLM v2",
-    "evaluation_source_type": "leaderboard"
-  },
   "source_metadata": {
     "source_organization_name": "Hugging Face",
-    "evaluator_relationship": "third_party"
+    "evaluator_relationship": "third_party",
+    "source_name": "HF Open LLM v2",
+    "source_type": "documentation"
   },
   "model_info": {
     "name": "Etherll/Herplete-LLM-Llama-3.1-8b",
     "developer": "meta",
     "inference_platform": "unknown",
-    "id": "Etherll/Herplete-LLM-Llama-3.1-8b"
+    "id": "Etherll/Herplete-LLM-Llama-3.1-8b",
+    "additional_details": {
+      "precision": "float16",
+      "architecture": "LlamaForCausalLM",
+      "params_billions": 8.03
+    }
   },
   "evaluation_results": [
     {
@@ -98,10 +101,5 @@
         "score": 0.34815492021276595
       }
     }
-  ],
-  "additional_details": {
-    "precision": "float16",
-    "architecture": "LlamaForCausalLM",
-    "params_billions": 8.03
-  }
+  ]
 }

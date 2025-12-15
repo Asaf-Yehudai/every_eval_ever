@@ -5,19 +5,22 @@
   "source_data": [
     "https://open-llm-leaderboard-open-llm-leaderboard.hf.space/api/leaderboard/formatted"
   ],
-  "evaluation_source": {
-    "evaluation_source_name": "HF Open LLM v2",
-    "evaluation_source_type": "leaderboard"
-  },
   "source_metadata": {
     "source_organization_name": "Hugging Face",
-    "evaluator_relationship": "third_party"
+    "evaluator_relationship": "third_party",
+    "source_name": "HF Open LLM v2",
+    "source_type": "documentation"
   },
   "model_info": {
     "name": "databricks/dolly-v1-6b",
     "developer": "databricks",
     "inference_platform": "unknown",
-    "id": "databricks/dolly-v1-6b"
+    "id": "databricks/dolly-v1-6b",
+    "additional_details": {
+      "precision": "bfloat16",
+      "architecture": "GPTJForCausalLM",
+      "params_billions": 6.0
+    }
   },
   "evaluation_results": [
     {
@@ -98,10 +101,5 @@
         "score": 0.12657912234042554
       }
     }
-  ],
-  "additional_details": {
-    "precision": "bfloat16",
-    "architecture": "GPTJForCausalLM",
-    "params_billions": 6.0
-  }
+  ]
 }

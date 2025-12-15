@@ -5,19 +5,22 @@
   "source_data": [
     "https://open-llm-leaderboard-open-llm-leaderboard.hf.space/api/leaderboard/formatted"
   ],
-  "evaluation_source": {
-    "evaluation_source_name": "HF Open LLM v2",
-    "evaluation_source_type": "leaderboard"
-  },
   "source_metadata": {
     "source_organization_name": "Hugging Face",
-    "evaluator_relationship": "third_party"
+    "evaluator_relationship": "third_party",
+    "source_name": "HF Open LLM v2",
+    "source_type": "documentation"
   },
   "model_info": {
     "name": "byroneverson/Yi-1.5-9B-Chat-abliterated",
     "developer": "byroneverson",
     "inference_platform": "unknown",
-    "id": "byroneverson/Yi-1.5-9B-Chat-abliterated"
+    "id": "byroneverson/Yi-1.5-9B-Chat-abliterated",
+    "additional_details": {
+      "precision": "bfloat16",
+      "architecture": "LlamaForCausalLM",
+      "params_billions": 8.829
+    }
   },
   "evaluation_results": [
     {
@@ -98,10 +101,5 @@
         "score": 0.3715093085106383
       }
     }
-  ],
-  "additional_details": {
-    "precision": "bfloat16",
-    "architecture": "LlamaForCausalLM",
-    "params_billions": 8.829
-  }
+  ]
 }

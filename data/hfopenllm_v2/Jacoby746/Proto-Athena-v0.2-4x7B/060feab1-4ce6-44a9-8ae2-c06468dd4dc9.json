@@ -5,19 +5,22 @@
   "source_data": [
     "https://open-llm-leaderboard-open-llm-leaderboard.hf.space/api/leaderboard/formatted"
   ],
-  "evaluation_source": {
-    "evaluation_source_name": "HF Open LLM v2",
-    "evaluation_source_type": "leaderboard"
-  },
   "source_metadata": {
     "source_organization_name": "Hugging Face",
-    "evaluator_relationship": "third_party"
+    "evaluator_relationship": "third_party",
+    "source_name": "HF Open LLM v2",
+    "source_type": "documentation"
   },
   "model_info": {
     "name": "Jacoby746/Proto-Athena-v0.2-4x7B",
     "developer": "Jacoby746",
     "inference_platform": "unknown",
-    "id": "Jacoby746/Proto-Athena-v0.2-4x7B"
+    "id": "Jacoby746/Proto-Athena-v0.2-4x7B",
+    "additional_details": {
+      "precision": "bfloat16",
+      "architecture": "MixtralForCausalLM",
+      "params_billions": 24.154
+    }
   },
   "evaluation_results": [
     {
@@ -98,10 +101,5 @@
         "score": 0.3197307180851064
       }
     }
-  ],
-  "additional_details": {
-    "precision": "bfloat16",
-    "architecture": "MixtralForCausalLM",
-    "params_billions": 24.154
-  }
+  ]
 }

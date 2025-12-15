@@ -5,19 +5,22 @@
   "source_data": [
     "https://open-llm-leaderboard-open-llm-leaderboard.hf.space/api/leaderboard/formatted"
   ],
-  "evaluation_source": {
-    "evaluation_source_name": "HF Open LLM v2",
-    "evaluation_source_type": "leaderboard"
-  },
   "source_metadata": {
     "source_organization_name": "Hugging Face",
-    "evaluator_relationship": "third_party"
+    "evaluator_relationship": "third_party",
+    "source_name": "HF Open LLM v2",
+    "source_type": "documentation"
   },
   "model_info": {
     "name": "kms7530/chemeng_qwen-math-7b_24_1_100_1_nonmath",
     "developer": "alibaba",
     "inference_platform": "unknown",
-    "id": "kms7530/chemeng_qwen-math-7b_24_1_100_1_nonmath"
+    "id": "kms7530/chemeng_qwen-math-7b_24_1_100_1_nonmath",
+    "additional_details": {
+      "precision": "float16",
+      "architecture": "?",
+      "params_billions": 15.231
+    }
   },
   "evaluation_results": [
     {
@@ -98,10 +101,5 @@
         "score": 0.24517952127659576
       }
     }
-  ],
-  "additional_details": {
-    "precision": "float16",
-    "architecture": "?",
-    "params_billions": 15.231
-  }
+  ]
 }

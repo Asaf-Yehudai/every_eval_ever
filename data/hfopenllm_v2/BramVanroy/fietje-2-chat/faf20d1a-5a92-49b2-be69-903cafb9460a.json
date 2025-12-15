@@ -5,19 +5,22 @@
   "source_data": [
     "https://open-llm-leaderboard-open-llm-leaderboard.hf.space/api/leaderboard/formatted"
   ],
-  "evaluation_source": {
-    "evaluation_source_name": "HF Open LLM v2",
-    "evaluation_source_type": "leaderboard"
-  },
   "source_metadata": {
     "source_organization_name": "Hugging Face",
-    "evaluator_relationship": "third_party"
+    "evaluator_relationship": "third_party",
+    "source_name": "HF Open LLM v2",
+    "source_type": "documentation"
   },
   "model_info": {
     "name": "BramVanroy/fietje-2-chat",
     "developer": "BramVanroy",
     "inference_platform": "unknown",
-    "id": "BramVanroy/fietje-2-chat"
+    "id": "BramVanroy/fietje-2-chat",
+    "additional_details": {
+      "precision": "bfloat16",
+      "architecture": "PhiForCausalLM",
+      "params_billions": 2.775
+    }
   },
   "evaluation_results": [
     {
@@ -98,10 +101,5 @@
         "score": 0.20545212765957446
       }
     }
-  ],
-  "additional_details": {
-    "precision": "bfloat16",
-    "architecture": "PhiForCausalLM",
-    "params_billions": 2.775
-  }
+  ]
 }

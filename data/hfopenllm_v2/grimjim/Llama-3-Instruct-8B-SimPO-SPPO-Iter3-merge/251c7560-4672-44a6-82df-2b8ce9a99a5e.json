@@ -5,19 +5,22 @@
   "source_data": [
     "https://open-llm-leaderboard-open-llm-leaderboard.hf.space/api/leaderboard/formatted"
   ],
-  "evaluation_source": {
-    "evaluation_source_name": "HF Open LLM v2",
-    "evaluation_source_type": "leaderboard"
-  },
   "source_metadata": {
     "source_organization_name": "Hugging Face",
-    "evaluator_relationship": "third_party"
+    "evaluator_relationship": "third_party",
+    "source_name": "HF Open LLM v2",
+    "source_type": "documentation"
   },
   "model_info": {
     "name": "grimjim/Llama-3-Instruct-8B-SimPO-SPPO-Iter3-merge",
     "developer": "grimjim",
     "inference_platform": "unknown",
-    "id": "grimjim/Llama-3-Instruct-8B-SimPO-SPPO-Iter3-merge"
+    "id": "grimjim/Llama-3-Instruct-8B-SimPO-SPPO-Iter3-merge",
+    "additional_details": {
+      "precision": "bfloat16",
+      "architecture": "LlamaForCausalLM",
+      "params_billions": 8.0
+    }
   },
   "evaluation_results": [
     {
@@ -98,10 +101,5 @@
         "score": 0.3684341755319149
       }
     }
-  ],
-  "additional_details": {
-    "precision": "bfloat16",
-    "architecture": "LlamaForCausalLM",
-    "params_billions": 8.0
-  }
+  ]
 }

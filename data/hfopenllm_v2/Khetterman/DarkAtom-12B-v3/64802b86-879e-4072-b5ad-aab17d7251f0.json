@@ -5,19 +5,22 @@
   "source_data": [
     "https://open-llm-leaderboard-open-llm-leaderboard.hf.space/api/leaderboard/formatted"
   ],
-  "evaluation_source": {
-    "evaluation_source_name": "HF Open LLM v2",
-    "evaluation_source_type": "leaderboard"
-  },
   "source_metadata": {
     "source_organization_name": "Hugging Face",
-    "evaluator_relationship": "third_party"
+    "evaluator_relationship": "third_party",
+    "source_name": "HF Open LLM v2",
+    "source_type": "documentation"
   },
   "model_info": {
     "name": "Khetterman/DarkAtom-12B-v3",
     "developer": "Khetterman",
     "inference_platform": "unknown",
-    "id": "Khetterman/DarkAtom-12B-v3"
+    "id": "Khetterman/DarkAtom-12B-v3",
+    "additional_details": {
+      "precision": "bfloat16",
+      "architecture": "MistralForCausalLM",
+      "params_billions": 12.248
+    }
   },
   "evaluation_results": [
     {
@@ -98,10 +101,5 @@
         "score": 0.3546376329787234
       }
     }
-  ],
-  "additional_details": {
-    "precision": "bfloat16",
-    "architecture": "MistralForCausalLM",
-    "params_billions": 12.248
-  }
+  ]
 }
