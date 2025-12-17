@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
-  "evaluation_id": "global-mmlu-lite/deepseek/deepseek-r1/2025-11-28T00:41:44.008800Z",
-  "retrieved_timestamp": "2025-11-28T00:41:44.008800Z",
+  "evaluation_id": "global-mmlu-lite/deepseek_deepseek-r1/1764290504.0088",
+  "retrieved_timestamp": "1764290504.0088",
   "source_data": [
     "https://www.kaggle.com/benchmarks/cohere-labs/global-mmlu-lite"
   ],

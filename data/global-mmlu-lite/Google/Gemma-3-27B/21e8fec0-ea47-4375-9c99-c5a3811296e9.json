@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
-  "evaluation_id": "global-mmlu-lite/google/gemma-3-27b/2025-11-28T00:41:44.001706Z",
-  "retrieved_timestamp": "2025-11-28T00:41:44.001706Z",
+  "evaluation_id": "global-mmlu-lite/google_gemma-3-27b/1764290504.001706",
+  "retrieved_timestamp": "1764290504.001706",
   "source_data": [
     "https://www.kaggle.com/benchmarks/cohere-labs/global-mmlu-lite"
   ],

@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
-  "evaluation_id": "global-mmlu-lite/cohere/command-a/2025-11-28T00:41:43.996772Z",
-  "retrieved_timestamp": "2025-11-28T00:41:43.996772Z",
+  "evaluation_id": "global-mmlu-lite/cohere_command-a/1764290503.996772",
+  "retrieved_timestamp": "1764290503.996772",
   "source_data": [
     "https://www.kaggle.com/benchmarks/cohere-labs/global-mmlu-lite"
   ],

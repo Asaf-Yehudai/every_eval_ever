@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
-  "evaluation_id": "global-mmlu-lite/xai/grok-3-mini/2025-11-28T00:41:44.009271Z",
-  "retrieved_timestamp": "2025-11-28T00:41:44.009271Z",
+  "evaluation_id": "global-mmlu-lite/xai_grok-3-mini/1764290504.009271",
+  "retrieved_timestamp": "1764290504.009271",
   "source_data": [
     "https://www.kaggle.com/benchmarks/cohere-labs/global-mmlu-lite"
   ],

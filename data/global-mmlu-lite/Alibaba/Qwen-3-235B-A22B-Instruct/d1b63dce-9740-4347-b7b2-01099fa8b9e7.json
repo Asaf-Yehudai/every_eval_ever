@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
-  "evaluation_id": "global-mmlu-lite/alibaba/qwen-3-235b-a22b-instruct/2025-11-28T00:41:43.995032Z",
-  "retrieved_timestamp": "2025-11-28T00:41:43.995032Z",
+  "evaluation_id": "global-mmlu-lite/alibaba_qwen-3-235b-a22b-instruct/1764290503.995032",
+  "retrieved_timestamp": "1764290503.995032",
   "source_data": [
     "https://www.kaggle.com/benchmarks/cohere-labs/global-mmlu-lite"
   ],

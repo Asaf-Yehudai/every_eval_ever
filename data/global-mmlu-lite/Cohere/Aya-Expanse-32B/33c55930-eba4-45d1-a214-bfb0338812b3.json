@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
-  "evaluation_id": "global-mmlu-lite/cohere/aya-expanse-32b/2025-11-28T00:41:44.007959Z",
-  "retrieved_timestamp": "2025-11-28T00:41:44.007959Z",
+  "evaluation_id": "global-mmlu-lite/cohere_aya-expanse-32b/1764290504.007959",
+  "retrieved_timestamp": "1764290504.007959",
   "source_data": [
     "https://www.kaggle.com/benchmarks/cohere-labs/global-mmlu-lite"
   ],

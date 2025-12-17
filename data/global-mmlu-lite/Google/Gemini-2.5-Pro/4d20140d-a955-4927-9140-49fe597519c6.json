@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
-  "evaluation_id": "global-mmlu-lite/google/gemini-25-pro/2025-11-28T00:41:43.992078Z",
-  "retrieved_timestamp": "2025-11-28T00:41:43.992078Z",
+  "evaluation_id": "global-mmlu-lite/google_gemini-25-pro/1764290503.992078",
+  "retrieved_timestamp": "1764290503.992078",
   "source_data": [
     "https://www.kaggle.com/benchmarks/cohere-labs/global-mmlu-lite"
   ],

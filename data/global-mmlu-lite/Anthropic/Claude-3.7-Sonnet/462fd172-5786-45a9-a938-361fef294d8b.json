@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
-  "evaluation_id": "global-mmlu-lite/anthropic/claude-37-sonnet/2025-11-28T00:41:43.997274Z",
-  "retrieved_timestamp": "2025-11-28T00:41:43.997274Z",
+  "evaluation_id": "global-mmlu-lite/anthropic_claude-37-sonnet/1764290503.997274",
+  "retrieved_timestamp": "1764290503.997274",
   "source_data": [
     "https://www.kaggle.com/benchmarks/cohere-labs/global-mmlu-lite"
   ],

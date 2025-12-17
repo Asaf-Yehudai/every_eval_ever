@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
-  "evaluation_id": "global-mmlu-lite/openai/o4-mini/2025-11-28T00:41:43.995967Z",
-  "retrieved_timestamp": "2025-11-28T00:41:43.995967Z",
+  "evaluation_id": "global-mmlu-lite/openai_o4-mini/1764290503.995967",
+  "retrieved_timestamp": "1764290503.995967",
   "source_data": [
     "https://www.kaggle.com/benchmarks/cohere-labs/global-mmlu-lite"
   ],

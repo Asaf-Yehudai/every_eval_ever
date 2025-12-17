@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
-  "evaluation_id": "global-mmlu-lite/mistral-ai/mistral-small-31/2025-11-28T00:41:43.998380Z",
-  "retrieved_timestamp": "2025-11-28T00:41:43.998380Z",
+  "evaluation_id": "global-mmlu-lite/mistral-ai_mistral-small-31/1764290503.99838",
+  "retrieved_timestamp": "1764290503.99838",
   "source_data": [
     "https://www.kaggle.com/benchmarks/cohere-labs/global-mmlu-lite"
   ],
