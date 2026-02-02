@@ -27,7 +27,7 @@
             "description": "Timestamp for when this record was created - using Unix Epoch time format"
         },
         "source_data": {
-            "description": "Source of dataset used for evaluation. There are two options supported: HuggingFace dataset or url for other data source.",
+            "description": "Source of dataset used for evaluation. Three options supported: URL array, HuggingFace dataset, or generic source object.",
             "oneOf": [
                 {
                     "type": "array",
@@ -69,6 +69,24 @@
                         "additional_details": {
                             "type": "object",
                             "description": "Additional dataset info parameters",
+                            "additionalProperties": true
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "description": "Generic source data when neither URL array nor HuggingFace dataset applies",
+                    "required": [
+                        "dataset_name"
+                    ],
+                    "properties": {
+                        "dataset_name": {
+                            "type": "string",
+                            "description": "Name of the source dataset"
+                        },
+                        "additional_details": {
+                            "type": "object",
+                            "description": "Additional source info parameters",
                             "additionalProperties": true
                         }
                     }
@@ -148,6 +166,10 @@
                     "type": "string",
                     "description": "Name of inference engine which provides an access to optimized models to use them for local evaluations (e.g. vLLM, Ollama)."
                 },
+                "inference_engine_version": {
+                    "type": "string",
+                    "description": "Version of the inference engine used (e.g. '0.6.2' for vLLM)"
+                },
                 "additional_details": {
                     "type": "object",
                     "description": "Additional model configuration parameters",
@@ -223,6 +245,27 @@
                             "max_score": {
                                 "type": "number",
                                 "description": "Maximum possible score for continuous metric"
+                            },
+                            "llm_scoring": {
+                                "type": "object",
+                                "description": "Configuration when LLM is used as scorer/judge",
+                                "properties": {
+                                    "judge_model": {
+                                        "type": "string",
+                                        "description": "Model used as judge (e.g. 'gpt-4')"
+                                    },
+                                    "input_prompt": {
+                                        "type": "string",
+                                        "description": "Prompt template used for judging"
+                                    },
+                                    "temperature": {
+                                        "type": "number"
+                                    },
+                                    "expert_baseline": {
+                                        "type": "number",
+                                        "description": "Expert/human baseline score for comparison"
+                                    }
+                                }
                             }
                         },
                         "if": {
@@ -268,6 +311,19 @@
                                 "type": "object",
                                 "description": "Any additional details about the score",
                                 "additionalProperties": true
+                            },
+                            "max_tokens": {
+                                "type": "integer",
+                                "description": "Maximum tokens used for generation in this evaluation"
+                            },
+                            "confidence_interval": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                },
+                                "minItems": 2,
+                                "maxItems": 2,
+                                "description": "[lower, upper] bounds"
                             }
                         }
                     },
@@ -532,6 +588,72 @@
                                                 "type": "string",
                                                 "description": "The decoded string representation of the token"
                                             }
+                                        }
+                                    }
+                                }
+                            },
+                            "messages": {
+                                "type": "array",
+                                "description": "Conversation history for multi-turn evaluations (OpenAI/Anthropic format)",
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "role",
+                                        "content"
+                                    ],
+                                    "properties": {
+                                        "role": {
+                                            "type": "string",
+                                            "enum": [
+                                                "system",
+                                                "user",
+                                                "assistant",
+                                                "tool"
+                                            ]
+                                        },
+                                        "content": {
+                                            "oneOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            ],
+                                            "description": "Message content (string or array for multi-modal)"
+                                        },
+                                        "tool_calls": {
+                                            "type": "array",
+                                            "description": "Tool calls made by assistant",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "type": {
+                                                        "type": "string"
+                                                    },
+                                                    "function": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "name": {
+                                                                "type": "string"
+                                                            },
+                                                            "arguments": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "tool_call_id": {
+                                            "type": "string",
+                                            "description": "ID of the tool call this message responds to"
                                         }
                                     }
                                 }
