@@ -8,7 +8,6 @@
         "model_id",
         "evaluation_name",
         "sample_id",
-        "sample_hash",
         "interaction_type",
         "input",
         "answer_attribution",
@@ -38,7 +37,7 @@
         },
         "sample_hash": {
             "type": "string",
-            "description": "Hash of (input + ground_truth) to ensure comparison is between the same sample across models, in case sample_id is not consistent"
+            "description": "Hash of (input.raw + input.reference) to ensure comparison is between the same sample across models, in case sample_id is not consistent"
         },
         "interaction_type": {
             "type": "string",

@@ -472,7 +472,7 @@
             }
         },
         "detailed_evaluation_results": {
-            "description": "Reference to the evluation results for all individual samples in the evaluation",
+            "description": "Reference to the evaluation results for all individual samples in the evaluation",
             "properties": {
                 "format": {
                     "type": "string",
@@ -486,15 +486,14 @@
                     "type": "string",
                     "description": "Path to the detailed evaluation results file"
                 },
+                "hash_algorithm": {
+                    "type": "string",
+                    "description": "Hash algorithm used for checksum and sample_hash in instance-level data",
+                    "enum": ["sha256", "md5"
+                },
                 "checksum": {
-                    "algorithm": {
-                        "type": "string",
-                        "description": "Algorithm used to compute the checksum"
-                    },
-                    "value": {
-                        "type": "string",
-                        "description": "Checksum value"
-                    }
+                    "type": "string",
+                    "description": "Checksum value of the file"
                 },
                 "total_rows": {
                     "type": "integer",
