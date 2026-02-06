@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "type": "object",
     "description": "Schema for storing and validating LLMs evaluation data, including model configuration, prompts, instances, Output, and evaluation metrics",
     "required": [
@@ -162,13 +162,18 @@
                             {
                                 "type": "object",
                                 "description": "Generic source data when neither URL array nor HuggingFace dataset applies",
+                                "additionalProperties": true,
                                 "required": [
-                                    "dataset_name"
+                                    "dataset_name",
+                                    "source_type"
                                 ],
                                 "properties": {
                                     "dataset_name": {
                                         "type": "string",
                                         "description": "Name of the source dataset"
+                                    },
+                                    "source_type": {
+                                        "const": "other"
                                     },
                                     "additional_details": {
                                         "$ref": "#/$defs/additional_properties_object"
@@ -236,19 +241,26 @@
                                 "description": "Configuration when LLM is used as scorer/judge",
                                 "additionalProperties": true,
                                 "required": [
-                                    "model_info",
+                                    "judges",
                                     "input_prompt"
                                 ],
                                 "properties": {
-                                    "model_info": {
-                                        "$ref": "#/$defs/model_info"
+                                    "judges": {
+                                        "type": "array",
+                                        "description": "LLM judge(s) - single item for judge, multiple for jury",
+                                        "items": {
+                                            "$ref": "#/$defs/judge_config"
+                                        },
+                                        "minItems": 1
                                     },
                                     "input_prompt": {
                                         "type": "string",
                                         "description": "Prompt template used for judging"
                                     },
-                                    "temperature": {
-                                        "type": "number"
+                                    "aggregation_method": {
+                                        "type": "string",
+                                        "enum": ["majority_vote", "average", "weighted_average", "median"],
+                                        "description": "How to aggregate scores when multiple judges"
                                     },
                                     "expert_baseline": {
                                         "type": "number",
@@ -489,8 +501,9 @@
                 "hash_algorithm": {
                     "type": "string",
                     "description": "Hash algorithm used for checksum and sample_hash in instance-level data",
-                    "enum": ["sha256", "md5"
+                    "enum": ["sha256", "md5"]
                 },
+
                 "checksum": {
                     "type": "string",
                     "description": "Checksum value of the file"
@@ -507,6 +520,23 @@
             "type": "object",
             "description": "Additional parameters (key-value object)",
             "additionalProperties": true
+        },
+        "judge_config": {
+            "type": "object",
+            "description": "Configuration for a single LLM judge/juror",
+            "required": ["model_info"],
+            "properties": {
+                "model_info": {
+                    "$ref": "#/$defs/model_info"
+                },
+                "temperature": {
+                    "type": "number"
+                },
+                "weight": {
+                    "type": "number",
+                    "description": "Weight of this judge's score in aggregation (used in jury)"
+                }
+            }
         },
         "model_info": {
             "type": "object",
