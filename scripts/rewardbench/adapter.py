@@ -21,12 +21,15 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from utils import (
+    SCHEMA_VERSION,
     fetch_csv,
     fetch_json,
     get_developer,
     make_evaluation_result,
     make_source_metadata,
     make_model_info,
+    make_source_data_hf,
+    make_source_data_url,
     save_evaluation_log,
 )
 
@@ -37,6 +40,18 @@ REWARDBENCH_V2_TREE_API = "https://huggingface.co/api/datasets/allenai/reward-be
 REWARDBENCH_V2_FILE_BASE = "https://huggingface.co/datasets/allenai/reward-bench-2-results/resolve/main/eval-set"
 
 OUTPUT_DIR = "data/reward-bench"
+
+# RewardBench v1 source data (shared across all v1 evaluation results)
+V1_SOURCE_DATA = make_source_data_hf(
+    dataset_name="RewardBench",
+    hf_repo="allenai/reward-bench",
+)
+
+# RewardBench v2 source data (shared across all v2 evaluation results)
+V2_SOURCE_DATA = make_source_data_hf(
+    dataset_name="RewardBench 2",
+    hf_repo="allenai/reward-bench-2-results",
+)
 
 # RewardBench v1 metrics with descriptions
 V1_METRICS = {
@@ -111,6 +126,7 @@ def fetch_rewardbench_v1(retrieved_timestamp: str) -> int:
                         name=metric_name,
                         score=score,
                         description=description,
+                        source_data=V1_SOURCE_DATA,
                     )
                 )
 
@@ -127,10 +143,9 @@ def fetch_rewardbench_v1(retrieved_timestamp: str) -> int:
         # Build evaluation log
         evaluation_id = f"reward-bench/{model_info.id.replace('/', '_')}/{retrieved_timestamp}"
         eval_log = EvaluationLog(
-            schema_version="0.1.0",
+            schema_version=SCHEMA_VERSION,
             evaluation_id=evaluation_id,
             retrieved_timestamp=retrieved_timestamp,
-            source_data=["https://huggingface.co/spaces/allenai/reward-bench"],
             source_metadata=make_source_metadata(
                 source_name="RewardBench",
                 organization_name="Allen Institute for AI",
@@ -208,6 +223,7 @@ def fetch_rewardbench_v2(retrieved_timestamp: str) -> int:
                                 name=metric_name,
                                 score=score,
                                 description=description,
+                                source_data=V2_SOURCE_DATA,
                             )
                         )
                     except (ValueError, TypeError):
@@ -225,6 +241,7 @@ def fetch_rewardbench_v2(retrieved_timestamp: str) -> int:
                         name="Score",
                         score=mean_score,
                         description="Overall RewardBench 2 Score (mean of all metrics)",
+                        source_data=V2_SOURCE_DATA,
                     ),
                 )
 
@@ -238,10 +255,9 @@ def fetch_rewardbench_v2(retrieved_timestamp: str) -> int:
             # Build evaluation log
             evaluation_id = f"reward-bench-2/{model_info.id.replace('/', '_')}/{retrieved_timestamp}"
             eval_log = EvaluationLog(
-                schema_version="0.1.0",
+                schema_version=SCHEMA_VERSION,
                 evaluation_id=evaluation_id,
                 retrieved_timestamp=retrieved_timestamp,
-                source_data=["https://huggingface.co/datasets/allenai/reward-bench-2-results"],
                 source_metadata=make_source_metadata(
                     source_name="RewardBench 2",
                     organization_name="Allen Institute for AI",

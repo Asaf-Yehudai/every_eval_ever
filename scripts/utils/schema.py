@@ -1,7 +1,7 @@
 """Schema construction helpers for building evaluation logs."""
 
 import time
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from eval_types import (
     EvaluationLog,
@@ -11,10 +11,87 @@ from eval_types import (
     ModelInfo,
     ScoreDetails,
     ScoreType,
+    SourceDataHf,
+    SourceDataPrivate,
+    SourceDataUrl,
     SourceMetadata,
 )
 
 from .developer import get_developer, get_model_id
+
+# Schema version constant
+SCHEMA_VERSION = "0.2.0"
+
+# Type alias for source data variants
+SourceData = Union[SourceDataUrl, SourceDataHf, SourceDataPrivate]
+
+
+def make_source_data_url(
+    dataset_name: str,
+    url: List[str],
+    **additional_details: Any,
+) -> SourceDataUrl:
+    """
+    Create a SourceDataUrl for URL-based evaluation data sources.
+
+    Args:
+        dataset_name: Name of the source dataset
+        url: List of URL(s) for the source of the evaluation data
+        **additional_details: Additional metadata key-value pairs
+
+    Returns:
+        Configured SourceDataUrl instance
+    """
+    return SourceDataUrl(
+        dataset_name=dataset_name,
+        source_type="url",
+        url=url,
+    )
+
+
+def make_source_data_hf(
+    dataset_name: str,
+    hf_repo: Optional[str] = None,
+    hf_split: Optional[str] = None,
+    samples_number: Optional[int] = None,
+) -> SourceDataHf:
+    """
+    Create a SourceDataHf for HuggingFace dataset sources.
+
+    Args:
+        dataset_name: Name of the source dataset
+        hf_repo: HuggingFace repository identifier
+        hf_split: Dataset split (train, val, or test)
+        samples_number: Number of samples in the dataset
+
+    Returns:
+        Configured SourceDataHf instance
+    """
+    return SourceDataHf(
+        dataset_name=dataset_name,
+        source_type="hf_dataset",
+        hf_repo=hf_repo,
+        hf_split=hf_split,
+        samples_number=samples_number,
+    )
+
+
+def make_source_data_private(
+    dataset_name: str,
+) -> SourceDataPrivate:
+    """
+    Create a SourceDataPrivate for private/custom dataset sources.
+
+    Args:
+        dataset_name: Name of the source dataset
+
+    Returns:
+        Configured SourceDataPrivate instance
+    """
+    return SourceDataPrivate(
+        dataset_name=dataset_name,
+        source_type="other",
+    )
 
 
 def make_metric_config(
@@ -64,6 +141,7 @@ def make_evaluation_result(
     name: str,
     score: float,
     description: str,
+    source_data: SourceData,
     lower_is_better: bool = False,
     score_type: ScoreType = ScoreType.continuous,
     min_score: float = 0.0,
@@ -80,6 +158,7 @@ def make_evaluation_result(
         name: Name of the evaluation (e.g., "MMLU", "GSM8K")
         score: The score value
         description: Human-readable description of what this measures
+        source_data: Source dataset information (URL, HuggingFace, or private)
         lower_is_better: Whether lower scores are better
         score_type: Type of score
         min_score: Minimum possible score
@@ -92,6 +171,7 @@ def make_evaluation_result(
     """
     return EvaluationResult(
         evaluation_name=name,
+        source_data=source_data,
         metric_config=make_metric_config(
             description=description,
             lower_is_better=lower_is_better,
@@ -139,7 +219,7 @@ def make_source_metadata(
 def make_model_info(
     model_name: str,
     developer: Optional[str] = None,
-    inference_platform: str = "unknown",
+    inference_platform: Optional[str] = None,
     additional_details: Optional[Dict[str, Any]] = None,
 ) -> ModelInfo:
     """
@@ -150,7 +230,7 @@ def make_model_info(
     Args:
         model_name: Name of the model
         developer: Optional developer override
-        inference_platform: Platform used for inference
+        inference_platform: Optional platform used for inference
         additional_details: Extra model metadata
 
     Returns:
@@ -172,13 +252,12 @@ def make_evaluation_log(
     source_name: str,
     model_name: str,
     evaluation_results: List[EvaluationResult],
-    source_data: List[str],
     organization_name: str,
     source_type: str = "documentation",
     evaluator_relationship: EvaluatorRelationship = EvaluatorRelationship.third_party,
     organization_url: Optional[str] = None,
     developer: Optional[str] = None,
-    inference_platform: str = "unknown",
+    inference_platform: Optional[str] = None,
     model_additional_details: Optional[Dict[str, Any]] = None,
     retrieved_timestamp: Optional[str] = None,
 ) -> EvaluationLog:
@@ -190,14 +269,13 @@ def make_evaluation_log(
     Args:
         source_name: Name of the evaluation source
         model_name: Name of the model being evaluated
-        evaluation_results: List of evaluation results
-        source_data: URLs or dataset info for the source data
+        evaluation_results: List of evaluation results (each must include source_data)
         organization_name: Organization providing the evaluation
         source_type: Either "documentation" or "evaluation_run"
         evaluator_relationship: Relationship to model developer
         organization_url: Optional URL for the organization
         developer: Optional developer override
-        inference_platform: Platform used for inference
+        inference_platform: Optional platform used for inference
         model_additional_details: Extra model metadata
         retrieved_timestamp: Optional timestamp override
 
@@ -213,10 +291,9 @@ def make_evaluation_log(
     evaluation_id = f"{source_name}/{sanitized_model_id}/{timestamp}"
 
     return EvaluationLog(
-        schema_version="0.1.0",
+        schema_version=SCHEMA_VERSION,
         evaluation_id=evaluation_id,
         retrieved_timestamp=timestamp,
-        source_data=source_data,
         source_metadata=make_source_metadata(
             source_name=source_name,
             organization_name=organization_name,
